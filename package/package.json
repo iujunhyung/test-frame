@@ -1,0 +1,21 @@
+{
+  "name": "iyu-web",
+  "description": "web-framework of iyu-company based on nextjs, react and lit-element",
+  "version": "0.0.1",
+  "author": {
+    "name": "iyulab",
+    "url": "https://www.iyulab.com"
+  },
+  "homepage": "https://www.iyulab.com",
+  "license": "MIT",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "lit": "^2.8.0",
+    "axios": "^1.4.0",
+    "typescript": "^5.1.6"
+  }
+}
