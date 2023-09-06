@@ -1,0 +1,29 @@
+@import 'cssvars';
+@import 'variables';
+
+a, :visited {
+  color: $link-text;
+
+  &:hover {
+    color: $link-text;
+  }
+}
+
+html, body {
+  margin: 0px;
+  font-family: $font-stack-primary;
+  overflow: hidden;
+}
+
+html[data-dark-theme=true][data-prefers-color-scheme="dark"] {
+  body {
+    background-color: $gray-light3;
+    color: $primary-text;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: $gray-light3;
+    color: $primary-text;
+  }
+}

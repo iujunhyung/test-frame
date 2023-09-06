@@ -1,0 +1,240 @@
+// Colors
+:root {
+  //default colors
+
+  /* grays */
+  --gray-light3: #F8F8F8; //Primary Page
+  --gray-2: #fcfcfc; //Deprecated Hover States
+  --gray-3: #a3a3a3;
+  --gray-4: #b5b5b5;
+  --gray-5: #c7c7c7;
+  --gray-6: #d9d9d9;
+  --gray-7: #ebebeb;
+  --gray-8: #fcfcfc;  //sidebar
+  --secondary-panel: #F2F2F2;
+
+  --alpha-8: rgba(0, 0, 0, .08);
+  --alpha-10: rgba(0, 0, 0, .1);
+  --alpha-20:rgba(0, 0, 0, .2);
+  --alpha-30:rgba(0, 0, 0, .3);
+  --alpha-80: rgba(0, 0, 0, .8);
+
+  // /* typography */
+  --primary-text: rgba(0, 0, 0, 0.9);
+  --primary-text-invert: rgba(255, 255, 255, 1);
+  --secondary-text: rgba(0, 0, 0, 0.82);
+  --secondary-text-invert: rgba(255, 255, 255, 0.59);
+  --always-light-text: rgba(255, 255, 255, 1);
+  --hint-text: rgba(0, 0, 0, 0.38);
+  --error-text: #DB0D1F;
+  --warning-text: #B55100;
+  --success-text: #4D7A14;
+  --link-text: #006dc7;
+  --link-text-hover: #004578;
+  --brand-text: #cb2e63;
+  --code-text: #614CA0;
+  --chart-count-red: #E81123;
+  --chart-count-violet: #614CA0;
+  --chart-count-orange: #B55100;
+  --code-class-name: #614CA0;
+  --code-method: #156C60;
+  --code-method-app-code: #007d85;
+  --code-method-params: #006fc8;
+  --stacktrace-thread-title-crashed: #C43E27;
+  --series-text-color: #90720e;
+  --enable-text: #416514;
+  --delete-text: #DB0D1F;
+
+  // /* surface */
+  --surface-card: #FFFFFF;
+  --surface-card-rgb: 255, 255, 255;
+  --surface-card-active: #F5FAFF;
+  --surface-tile-highlight:#DBEEFF;
+  --surface-tile-highlight-active:#CCE6FF;
+
+  --top-bar: var(--surface-card);
+  --toast-bd: rgba(0, 0, 0, .65);
+  --toast-text: white;
+  --action-list: rgba(0, 0, 0, .04);
+  --action-list-hover: rgba(0, 0, 0, .1);
+  --upload-inset-bg: #F8F8F8;
+  --focus-color: rgba(0, 109, 199, 0.75);
+
+  // UI Colors
+  --ui-subtle-hover: rgba(0, 0, 0, 0.04);
+  --ui-subtle-active: rgba(0, 0, 0, 0.06);
+  --ui-subtle-active-hover: rgba(0, 0, 0, 0.08);
+  --ui-divider: rgba(0, 0, 0, 0.15);
+  --ui-search: rgba(0, 0, 0, 0.06);
+  --ui-toggles: white;
+  --ui-toggles-border: rgba(0, 0, 0, 0.19);
+  --ui-outline: #DEDEDE;
+  --ui-table-row: #EBEBEB;
+
+  // text-field
+  --text-field: var(--surface-card);
+  --text-field-outline: var(--ui-outline);
+  --text-field-disabled: #F2F2F2;
+
+  --grid-container-row: rgba(0, 0, 0, 0.06);
+  --box-shadow: rgba(0, 0, 0, 0.1);
+
+
+  //action tiles
+  --gray-background: rgba(0,0,0,0.04);
+  --error-bg: rgba(248, 197, 186, 0.3);
+  --warning-bg: #f8f1d8;
+  --info-bg: #DEDEDE;
+
+  //syntax tokens
+  --syntax-token1: #008000;
+  --syntax-token2: #DF0000;
+  --syntax-token3: #a31515;
+  --syntax-token4: #001080;
+  --syntax-token5: #0000ff;
+  --syntax-token6: #795E26;
+  --syntax-token7: #811f3f;
+  --syntax-token8: #267f99;
+  --terminal-bg: #575757;
+  --codeblock-bg: #F2F2F2;
+
+  --banner-blue: #CEE5F8;
+
+  //build repo public/private badge
+  --repo-badge-bg: #f7ebb6;
+
+  //high light
+  --highlight-bg:  #F9D33C;
+  --subhighlight-bg: #F7E28B;
+
+  // clickable icon
+  --clickable-icon-disabled: rgba(0, 0, 0, 0.3);
+  
+  //overlay
+  --dark-backdrop: rgba(0, 0, 0, 0.12);
+  --light-backdrop: rgba(0, 0, 0, 0.03);
+
+  // charts
+  --charts-map-bg: #e5e5e5;
+  --charts-map-border: rgba(255,255,255,0.1);
+  --charts-cyan: #1faece;
+}
+
+html[data-dark-theme=true][data-prefers-color-scheme="dark"] {
+
+  /* grays */
+  --gray-light3: #212121; //entire page background including panels
+  --gray-2: rgba(255, 255, 255, 0.04); // a lot of hover states
+  --gray-3: #a3a3a3;
+  --gray-4: #898989;
+  --gray-5: #6f6f6f;
+  --gray-6: #555555;
+  --gray-7: #3b3b3b;
+  --gray-8: #2D2D2D; //sidebar
+
+  --alpha-8: rgba(255, 255, 255, .08);
+  --alpha-10: rgba(255, 255, 255, .1);
+  --alpha-20:rgba(255, 255, 255, .2);
+  --alpha-30:rgba(255, 255, 255, .3);
+  --alpha-80: rgba(255, 255, 255, .8);
+
+  --secondary-panel: #262626;
+
+  /* typography */
+  --primary-text: rgba(255, 255, 255, 1);
+  --primary-text-invert: rgba(0, 0, 0, 0.9);
+  --secondary-text: rgba(255, 255, 255, 0.59);
+  --secondary-text-invert: rgba(0, 0, 0, 0.59);
+  --hint-text: rgba(255, 255, 255, 0.38);
+  --error-text: #FF9090;
+  --warning-text: #F0B240;
+  --success-text: #91CA47;
+  --link-text: #5AB9FF;
+  --link-text-hover: #3292e2;
+  --brand-text: #F0467E;
+  --code-text: #B5A1E0;
+  --chart-count-red: #F7737E;
+  --chart-count-violet: #B5A1E0;
+  --chart-count-orange: #E28A42;
+  --code-class-name: #bfaae9;
+  --code-method: #3cc0ad;
+  --code-method-app-code: #00e1c1;
+  --code-method-params: #7eb5e2;
+  --stacktrace-thread-title-crashed: #ec9787;
+  --series-text-color: #EBC137;
+  --enable-text: #a5f042;
+  --delete-text: #ff8282;
+
+  /* surface */
+  --surface-card: #333333;
+  --surface-card-rgb: 51, 51, 51;
+  --surface-card-active: #223B59; //Need designer to reference this
+  --surface-tile-highlight: #223B59;
+  --surface-tile-highlight-active: #2C4C73;
+
+  --top-bar: #1A1A1A;
+  --toast-bd: rgba(255, 255, 255, .65);
+  --toast-text: rgba(0, 0, 0, 0.9);
+  --action-list: rgba(255, 255, 255, .08);
+  --action-list-hover: rgba(255, 255, 255, .15);
+  --upload-inset-bg: #2E2D2C;
+  --focus-color: rgba(90, 185, 255, 0.7);
+
+  // UI Colors
+  --ui-subtle-hover: rgba(255, 255, 255, 0.04);
+  --ui-subtle-active: rgba(255, 255, 255, 0.06);
+  --ui-subtle-active-hover: rgba(255, 255, 255, 0.08);
+  --ui-divider: rgba(255, 255, 255, 0.15);
+  --ui-search: #434343;
+  --ui-toggles: transparent;
+  --ui-toggles-border: rgba(255, 255, 255, 0.32);
+  --ui-outline: rgba(255, 255, 255, 0.16);
+  --ui-table-row: rgba(255, 255, 255, 0.08);
+
+  // text-field
+  --text-field: #424141;
+  --text-field-outline: #605E5C;
+  --text-field-disabled: #424141;
+
+  --grid-container-row: rgba(255, 255, 255, 0.06);
+  --box-shadow: rgba(255, 255, 255, 0.1);
+
+  //action tiles
+  --gray-background: #424141;
+  --error-bg: #6F2722;
+  --warning-bg: #6F6022;
+  --info-bg: rgba(255,255,255,.08);
+
+  //syntax tokens
+  --syntax-token1: #B1B1B1;
+  --syntax-token2: #FF6959;
+  --syntax-token3: #CD917A;
+  --syntax-token4: #599DD4;
+  --syntax-token5: #9EDDFC;
+  --syntax-token6: #DCDBAC;
+  --syntax-token7: #599DD4;
+  --syntax-token8: #54C8B0;
+  --terminal-bg: #0F0F0F;
+  --codeblock-bg: rgba(0,0,0, 0.36);
+
+  --banner-blue: rgba(0, 135, 255, 0.3);
+
+  //build repo public/private badge
+  --repo-badge-bg: #ad9f56;
+
+  //high light
+  --highlight-bg: #D16F00;
+  --subhighlight-bg: #E7963B;
+
+  // clickable icon
+  --clickable-icon-disabled: rgba(255, 255, 255, 0.3);
+
+  //overlay
+  --dark-backdrop: rgba(0, 0, 0, 0.36);
+  --light-backdrop: rgba(0, 0, 0, 0.09);
+
+  // charts
+  --charts-map-border: rgba(0,0,0,0.1);
+  --charts-map-bg: #484848;
+}
+

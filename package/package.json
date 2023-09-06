@@ -9,13 +9,28 @@
   "homepage": "https://www.iyulab.com",
   "license": "MIT",
   "type": "module",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc && vite build"
   },
   "dependencies": {
+    "@adobe/lit-mobx": "^2.2.0",
+    "@microsoft/fast-components": "^2.30.6",
+    "axios": "^1.5.0",
     "lit": "^2.8.0",
-    "axios": "^1.4.0",
-    "typescript": "^5.1.6"
+    "mobx": "^6.10.2",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/node": "20.5.9",
+    "autoprefixer": "^10.4.15",
+    "path": "^0.12.7",
+    "postcss": "^8.4.29",
+    "sass": "^1.66.1",
+    "tailwindcss": "3.3.3",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.9",
+    "vite-plugin-checker": "^0.6.2",
+    "vite-plugin-dts": "^3.5.3"
   }
 }

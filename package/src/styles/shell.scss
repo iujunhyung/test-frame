@@ -1,0 +1,155 @@
+@import 'cssvars';
+@import 'vars';
+@import 'variables';
+
+html, body, .app-layout {
+  margin: 0px;
+  font-family: $font-stack-primary;
+  overflow: hidden;
+}
+
+html[data-dark-theme=true][data-prefers-color-scheme="dark"] {
+  body {
+    background-color: $gray-light3;
+    color: $primary-text;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: $gray-light3;
+    color: $primary-text;
+  }
+}
+
+html {
+  position: relative;
+  min-width: $small-screen;
+  overflow-x: auto;
+
+  @media (min-width: $medium-screen) {
+    overflow-x: hidden;
+  }
+
+  &[data-supports-mobile=true] {
+    @media (max-width: $tablet-screen - 1px) {
+      min-width: 0;
+    }
+  }
+}
+
+body, .app-layout {
+  display: flex;
+
+  .app-loading-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+}
+
+body {
+  flex-direction: column;
+}
+
+.app-layout {
+  composes: paragraph-m from '~@css/utils.scss';
+  position: relative;
+  height: 100%;
+}
+
+#app, .cc-banner {
+  flex: 1;
+}
+
+html, body, #app {
+  height: 100%;
+}
+
+// Make html scroll on mobile
+html[data-supports-mobile=true] {
+  @media (max-width: $phone-screen-max) {
+    & {
+      overflow: auto;
+    }
+    body, #app {
+      height: auto;
+      min-height: 100%;
+    }
+  }
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+}
+
+a, :visited {
+  color: $link-text;
+
+  &:hover {
+    color: $link-text;
+  }
+}
+
+body:not([data-outline]) :focus {
+  outline: none;
+}
+
+pre {
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    border: 1px solid buttonText;
+    box-sizing: border-box;
+  }
+}
+
+.loading {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+.cover {
+  flex-grow: 1;
+  background: $gray-light3;
+}
+
+// Fix firefox dotted focus
+::-moz-focus-inner {
+  border: 0;
+}
+input[type=range]::-moz-focus-outer {
+  border: 0;
+}
+
+// Force all browsers to full opacity on placeholders
+// Currently fixes a problem with Firefox, but future proofs against other changes
+// See similar issue: https://github.com/twbs/bootstrap/issues/7589
+::placeholder {
+  opacity: 1;
+}
+
+@media (max-width: $phone-screen-max) {
+  // Nuclear option that prevents elastic scroll on body element on real iOS devices,
+  // which overflow: hidden doesn’t do. However, it launches the scroll position to the
+  // top, so we only want to use it on stuff like the nav bar and modals which either
+  // cover the whole page of you can only really get to when you’re already scrolled to the top.
+  // The reason this is so important for the nav bar is that currently, it closes itself
+  // if the window resizes, and because mobile Safari resizes the browser chrome as you scroll,
+  // that counts as a window resize. So without this, someone inadvertently scrolling the
+  // background while the nav drawer is open would accidentally close the nav drawer. :(
+  html[data-supports-mobile=true].super-stop-scrolling {
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+  // Typical scroll prevention strategy with something position: fixed in front.
+  // This doesn’t actually work on iOS but it’s fine for things like Dialogs and Popovers.
+  // It’s better than scrolling all the way to the top like `.super-stop-scrolling` does.
+  html[data-supports-mobile=true].stop-scrolling {
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,56 @@
+{
+  // 실행 환경을 설정합니다. 여기서는 브라우저, ES2021, 노드 환경을 지정합니다.
+  "env": {
+    "browser": true,
+    "esnext": true,
+    "node": true
+  },
+  // 기존의 규칙 설정을 확장합니다. 여러 플러그인과 설정을 참조하고 있습니다.
+  "extends": [
+    "eslint:recommended", // ESLint의 기본 규칙
+    "plugin:@typescript-eslint/recommended", // TypeScript 규칙
+    "plugin:react/recommended", // React 규칙
+    "plugin:react-hooks/recommended", // React Hooks 규칙
+    "plugin:jsx-a11y/recommended", // 접근성(A11Y) 규칙
+    "prettier" // Prettier와 충돌하지 않는 규칙만 적용
+  ],
+  // 파서를 설정합니다. TypeScript 파서를 사용합니다.
+  "parser": "@typescript-eslint/parser",
+  // 파서 옵션을 설정합니다.
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true // JSX를 사용할 수 있게 설정합니다.
+    },
+    "ecmaVersion": 12, // ECMAScript 버전을 설정합니다.
+    "sourceType": "module" // 모듈 시스템을 사용하겠다고 설정합니다.
+  },
+  // 사용할 플러그인을 설정합니다.
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "jsx-a11y",
+    "prettier"
+  ],
+  // 커스텀 ESLint 규칙을 설정합니다.
+  "rules": {
+    "no-unused-vars": "off", // 사용되지 않는 변수 경고를 끕니다.
+    "@typescript-eslint/no-unused-vars": ["warn"], // TypeScript에서 사용되지 않는 변수에 대한 경고
+    "react/react-in-jsx-scope": "off", // React import를 생략 가능하게 설정합니다.
+    "react/prop-types": "off", // prop-types 검사를 끕니다.
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ], // Next.js의 Link 컴포넌트에 대한 규칙 설정
+    "prettier/prettier": ["error", {}, { "usePrettierrc": true }] // Prettier 설정을 적용합니다.
+  },
+  // 플러그인에 대한 추가 설정입니다.
+  "settings": {
+    "react": {
+      "version": "detect" // 설치된 React 버전을 자동으로 감지합니다.
+    }
+  }
+}

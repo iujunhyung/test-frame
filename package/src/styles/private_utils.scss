@@ -1,0 +1,85 @@
+// These classes are considered private API, for use internally to shared-ui,
+// possibly as a vetting process for being added to the stable utils.scss.
+// Do not use this file in Beacon code.
+
+@import "variables.scss";
+@import "mixins.scss";
+
+.reset {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.shadow-center {
+  box-shadow: 0 0 32px 0 rgba(0, 0, 0, 0.06);
+}
+
+.shadow-down {
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.06);
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    border: 1px solid windowText;
+    box-sizing: border-box;
+  }
+}
+
+.label {
+  color: $primary-text;
+  display: block;
+  font-size: $body-m;
+  line-height: 20px;
+  margin-bottom: 6px;
+}
+
+.form-desc {
+  font-size: $body-s;
+  color: $secondary-text;
+  margin-top: 5px;
+  word-break: keep-all; // CM: added because `hyphen (-` `)` was breaking
+}
+
+.bar {
+  height: 80px;
+  padding: 20px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.bar-label-container {
+  display: inline-block;
+  margin: 0 $space-xs;
+}
+
+.bar-label-label {
+  color: $secondary-text;
+  font-size: $body-s;
+  line-height: 20px;
+  text-transform: uppercase;
+}
+
+.bar-label-value {
+  font-size: $body-m;
+  line-height: 20px;
+  color: $primary-text;
+}
+
+.disable-dim {
+  pointer-events: none;
+  & > * {
+    opacity: .4
+  }
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    color: grayText;
+    div[class^="gravatar-avatar"] {
+      background-color: grayText;
+      border-radius: 50%;
+    }
+    img {
+      opacity: .4;
+    }
+    & > * {
+      opacity: 1
+    }
+  }
+}

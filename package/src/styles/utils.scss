@@ -1,0 +1,526 @@
+// These classes are public API, intended to be composed in Beacon styles.
+// Do not import this file using @import. Instead, use class composition:
+//
+// .some-beacon-thing {
+//   composes: flex centered shadow from '~@css/utils.scss';
+//   border-width: 2px;
+// }
+
+@import '~@css/variables.scss';
+@import '~@css/mixins.scss';
+
+:root {
+  // --check-theme-url: url('../icon/icon/theme-background/check-light-theme.svg');
+  // --expand-more-theme-url: url('../icon/icon/theme-background/expand-more-light-theme.svg');
+  // --search-theme-url: url('../icon/icon/theme-background/search-light-theme.svg');
+}
+html[data-dark-theme=true][data-prefers-color-scheme="dark"] {
+  // --check-theme-url: url('../icon/icon/theme-background/check-data-dark-theme.svg');
+  // --expand-more-theme-url: url('../icon/icon/theme-background/expand-more-data-dark-theme.svg');
+  // --search-theme-url: url('../icon/icon/theme-background/search-data-dark-theme.svg');
+}
+
+
+.flex {
+  display: flex;
+}
+
+.flex-grow-column {
+  composes: flex;
+  flex: 1 0 auto;
+  flex-direction: column;
+}
+
+.stretch {
+  composes: flex;
+  justify-content: space-between;
+}
+
+.flex-end {
+  composes: flex;
+  justify-content: flex-end;
+}
+
+.vertically-center {
+  composes: flex;
+  align-items: center;
+}
+
+.align-baselines {
+  composes: flex;
+  align-items: baseline;
+}
+
+// Corner radii
+.rounded-sm { border-radius: 2px; }
+.rounded-m  { border-radius: 4px; }
+.rounded-lg { border-radius: 6px; }
+
+.bottom-divider {
+  box-shadow: 0 1px 0 0 var(--box-shadow);
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    box-shadow: 0 1px 0 0 buttonText;
+  }
+}
+
+.bottom-divider-inset {
+  box-shadow: inset 0 -1px 0 0 var(--box-shadow);
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    box-shadow: 0 1px 0 0 buttonText;
+  }
+}
+
+.top-divider {
+  box-shadow: 0 -1px 0 0 var(--box-shadow);
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    box-shadow: 0 -1px 0 0 buttonText;
+  }
+}
+
+.top-divider-inset {
+  box-shadow: inset 0 1px 0 0 var(--box-shadow);
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    box-shadow: inset 0 1px 0 0 buttonText;
+  }
+}
+
+.unbutton {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  font-size: inherit;
+  font-weight: unset;
+  font-family: inherit;
+  color: unset;
+  text-align: unset;
+}
+
+.icon-background {
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.icon-before {
+  &::before {
+    @extend .icon-background;
+    background-position: center center;
+    content: '';
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+// Icon
+$icons: 'check', 'expand-more', 'search';
+
+@each $icon in $icons {
+    .icon-background-#{$icon} {
+    @extend .icon-background;
+    background-image: var(--#{$icon}-theme-url);
+  }
+  .icon-before-#{$icon} {
+    &::before {
+      @extend .icon-before;
+      background-image: var(--#{$icon}-theme-url);
+    }
+  }
+}
+
+.form-message {
+  margin-top: $space-xxs;
+  font-size: $body-s;
+  line-height: 15px;
+  a, a:hover, a:active, a:visited {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
+
+.form-error-message {
+  composes: form-message;
+  color: $error-text;
+}
+
+.form-info-message {
+  composes: form-message;
+  color: $secondary-text;
+}
+
+.form-success-message {
+  composes: form-message;
+  color: $success-text;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: $body-m;
+  line-height: 20px;
+}
+
+// Other entry sizes defined after the space classes.
+.entry {
+  @include entry;
+  box-sizing: border-box;
+  color: $primary-text;
+  width: 100%;
+  border-color: $gray-40;
+
+  &::placeholder {
+    color: var(--secondary-text);
+    // Edge: High contrast mode
+    @media screen and (-ms-high-contrast: active) {
+      color: windowText;
+    }
+  }
+
+  &[disabled],
+  &[readonly] {
+    &::placeholder {
+      color: $hint-text;
+      // Edge: High contrast modes
+      @media screen and (-ms-high-contrast: active) {
+        color: grayText;
+      }
+    }
+  }
+}
+
+@keyframes skeleton-pulse {
+  0% {
+    opacity: 0.4;
+    animation-timing-function: $ease-out-cubic;
+  }
+  50% {
+    opacity: 0.8;
+    animation-timing-function: $ease-in-cubic;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.5s linear infinite;
+}
+
+.off-screen {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  pointer-events: none;
+  opacity: 0;
+  z-index: -1;
+}
+
+// Spaces
+.padding-xxs { padding: $space-xxs; } .padding-xxs-bordered { padding: $space-xxs - 1px; border-width: 1px; }
+.padding-xs  { padding: $space-xs; }  .padding-xs-bordered  { padding: $space-xs - 1px;  border-width: 1px; }
+.padding-s   { padding: $space-s; }   .padding-s-bordered   { padding: $space-s - 1px;   border-width: 1px; }
+.padding-m   { padding: $space-m; }   .padding-m-bordered   { padding: $space-m - 1px;   border-width: 1px; }
+.padding-l   { padding: $space-l; }   .padding-l-bordered   { padding: $space-l - 1px;   border-width: 1px; }
+.padding-xl  { padding: $space-xl; }  .padding-xl-bordered  { padding: $space-xl - 1px;  border-width: 1px; }
+.padding-xxl { padding: $space-xxl; } .padding-xxl-bordered { padding: $space-xxl - 1px; border-width: 1px; }
+
+.padding-squish-xxs { padding: $space-squish-xxs; } .padding-squish-xxs-bordered { padding: $space-squish-xxs-v - 1px $space-squish-xxs-h - 1px; border-width: 1px; }
+.padding-squish-xs { padding: $space-squish-xs; }   .padding-squish-xs-bordered  { padding: $space-squish-xs-v - 1px $space-squish-xs-h - 1px;   border-width: 1px; }
+.padding-squish-s { padding: $space-squish-s; }     .padding-squish-s-bordered   { padding: $space-squish-s-v - 1px $space-squish-s-h - 1px;     border-width: 1px; }
+.padding-squish-m { padding: $space-squish-m; }     .padding-squish-m-bordered   { padding: $space-squish-m-v - 1px $space-squish-m-h - 1px;     border-width: 1px; }
+.padding-squish-l { padding: $space-squish-l; }     .padding-squish-l-bordered   { padding: $space-squish-l-v - 1px $space-squish-l-h - 1px;     border-width: 1px; }
+
+.padding-list-xs { padding: $space-list-xs; } .padding-list-xs-bordered { padding: $space-list-xs-v - 1px $space-list-h - 1px; border-width: 1px; }
+.padding-list-s { padding: $space-list-s; }   .padding-list-s-bordered  { padding: $space-list-s-v - 1px $space-list-h - 1px;  border-width: 1px; }
+.padding-list-m { padding: $space-list-m; }   .padding-list-m-bordered  { padding: $space-list-m-v - 1px $space-list-h - 1px;  border-width: 1px; }
+.padding-list-l { padding: $space-list-l; }   .padding-list-l-bordered  { padding: $space-list-l-v - 1px $space-list-h - 1px;  border-width: 1px; }
+
+// Space above
+.space-zero-above { margin-top: 0; }
+.space-xxs-above { margin-top: $space-xxs; }
+.space-xs-above { margin-top: $space-xs; }
+.space-s-above { margin-top: $space-s; }
+.space-m-above { margin-top: $space-m; }
+.space-l-above { margin-top: $space-l; }
+.space-xl-above { margin-top: $space-xl; }
+.space-xxl-above { margin-top: $space-xxl; }
+
+// Space below
+.space-zero-below { margin-bottom: 0; }
+.space-xxs-below { margin-bottom: $space-xxs; }
+.space-xs-below { margin-bottom: $space-xs; }
+.space-s-below { margin-bottom: $space-s; }
+.space-m-below { margin-bottom: $space-m; }
+.space-l-below { margin-bottom: $space-l; }
+.space-xl-below { margin-bottom: $space-xl; }
+.space-xxl-below { margin-bottom: $space-xxl; }
+
+// Space left
+.space-xxs-left { margin-left: $space-xxs; }
+.space-xs-left { margin-left: $space-xs; }
+.space-s-left { margin-left: $space-s; }
+.space-m-left { margin-left: $space-m; }
+.space-l-left { margin-left: $space-l; }
+.space-xl-left { margin-left: $space-xl; }
+.space-xxl-left { margin-left: $space-xxl; }
+
+// Space right
+.space-xxs-right { margin-right: $space-xxs; }
+.space-xs-right { margin-right: $space-xs; }
+.space-s-right { margin-right: $space-s; }
+.space-m-right { margin-right: $space-m; }
+.space-l-right { margin-right: $space-l; }
+.space-xl-right { margin-right: $space-xl; }
+.space-xxl-right { margin-right: $space-xxl; }
+
+// Typography
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.items-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
+.wordwrap {
+  word-break: break-word;    // non-standard value implemented by Webkit/Blink
+  word-wrap: break-word;     // non-standard property, alias of overflow-wrap
+  overflow-wrap: break-word; // the new correct standard, not universally supported
+}
+
+.ellipsize {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.paragraph-s {
+  font-weight: normal;
+  font-size: $body-s;
+  line-height: 16px;
+}
+
+.paragraph-m {
+  font-weight: normal;
+  font-size: $body-m;
+  line-height: 20px;
+}
+
+.paragraph-l {
+  font-weight: normal;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.inline-text {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  .inline-text {
+    display: inline;
+  }
+}
+
+.inline-text-s { composes: inline-text paragraph-s; }
+.inline-text-m { composes: inline-text paragraph-m; }
+.inline-text-l { composes: inline-text paragraph-l; }
+
+.light {
+  font-weight: 300;
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.standalone-anchor {
+  text-decoration: none;
+}
+
+.unanchor {
+  composes: standalone-anchor;
+  &, &:hover, &:visited {
+    color: $primary-text;
+    @media screen and (-ms-high-contrast: active) {
+      color: buttonText;
+    }
+  }
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.header-m {
+  composes: light;
+  font-size: 34px;
+  line-height: 40px;
+}
+
+.title-xs {
+  composes: wordwrap space-zero-above space-zero-below;
+  font-size: $body-m;
+  line-height: 20px;
+}
+
+.title-s {
+  composes: wordwrap space-zero-above space-zero-below;
+  font-size: 17px;
+  line-height: 24px;
+}
+
+.title-m {
+  composes: wordwrap space-zero-above space-zero-below;
+  font-size: 21px;
+  line-height: 32px;
+}
+
+.title-l {
+  composes: wordwrap space-zero-above space-zero-below;
+  font-size: 28px;
+  line-height: 40px;
+}
+
+.primary-text { color: $primary-text; }
+.primary-text-invert { color: $primary-text-invert; }
+.secondary-text { color: $secondary-text; }
+.secondary-text-invert { color: $secondary-text-invert; }
+.hint-text, .disabled-text { color: $hint-text; }
+.hint-text-invert, .disabled-text-invert { color: $hint-text-invert; }
+.error-text, .danger-text { color: $error-text; }
+.error-text-invert, .danger-text-invert { color: $error-text-invert; }
+.warning-text { color: $warning-text; }
+.warning-text-invert { color: $warning-text-invert; }
+.success-text { color: $success-text; }
+.success-text-invert { color: $success-text-invert; }
+.link-text { color: $link-text; &:hover { color: $link-text-hover; } }
+.link-text-invert { color: $link-text-invert; }
+.brand-text { color: var(--brand-text); }
+.brand-text-invert { color: $mc-pink; }
+.black-text { color: $black-text; }
+.white-text { color: var(--always-light-text); }
+
+// The order of these things is important
+// and kind of a hack. The @entry mixin
+// defines a padding that we need the
+// padding-squish classes to beat out.
+
+.small-entry {
+  composes: entry padding-squish-s-bordered;
+  font-size: $input-font-size-sm;
+}
+
+.large-entry {
+  composes: entry bold padding-squish-l-bordered;
+  font-size: $input-font-size-lg;
+  // Increased line height required to avoid text cropping in Firefox / Windows Chrome
+  // Padding adjusted to offset additional line-height
+  line-height: 24px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+
+// this might not work in all browsers, but it's better than the alternatives
+.mask-right {
+  mask-size: calc(100% - #{$space-l}), calc(#{$space-l} + 1px);
+  mask-position: left, right;
+  mask-repeat: repeat-y, repeat-y;
+  mask-image: linear-gradient(black, black), linear-gradient(to right, black, transparent);
+}
+
+.white-overlay {
+  background-color: $surface-card;
+}
+
+.dark-overlay {
+  background-color: $gray-alpha-80;
+  @supports (backdrop-filter: blur(10px)) {
+    background-color: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(10px);
+  }
+}
+
+.screen-reader-only {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+}
+
+.focus {
+  @include shadow-focus();
+}
+
+.focus-flush {
+  @include shadow-focus('yes')
+}
+
+.focus-white {
+  @include shadow-focus('flush', $customColor: rgb(255, 255, 255));
+}
+
+.focus-invariant {
+  @include shadow-focus($ignore-outliner: 'yes', $include-pseudoclass: 'no');
+}
+
+.focus-outline {
+  @include shadow-focus($outline: 'yes');
+}
+
+.pre {
+  white-space: pre;
+  font-family: $monospace-font;
+  font-size: $body-s;
+  line-height: 16px;
+  overflow: auto;
+  margin: 0;
+}
+
+.preWhiteSpace {
+  white-space: pre-wrap;
+}
+
+@keyframes spinning {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.spinning {
+  animation: spinning 1.5s linear infinite;
+}
+
+.required:after {
+  content:" *";
+  color: $ms-red;
+}

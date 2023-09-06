@@ -1,0 +1,97 @@
+@import "variables.scss";
+$retina: "only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-resolution: 1.5dppx)";
+
+@mixin retina-background-image($file, $type, $width, $height) {
+  background-image: url($file + '.' + $type);
+  @media #{$retina} {
+    background-image: url($file + '@2x.' + $type);
+    background-size: $width $height;
+  }
+}
+
+@mixin entry {
+  margin: 0; // Safari adds margin to inputs
+  background-color: var(--text-field);
+  border-radius: 2px;
+  border: 1px solid var(--text-field-outline);
+  font-family: $font-stack-primary;
+  font-size: $input-font-size-md;
+  line-height: 20px;
+  outline: none;
+  padding: ($space-squish-m-v - 1px) ($space-squish-m-h - 1px);
+  -webkit-appearance: none; // Mobile Safari adds inner shadow
+
+  @include shadow-focus($safeline: 'no', $ignore-outliner: 'yes');
+  &:focus {
+    border-color: $azure-light1;
+  }
+
+  &[disabled],
+  &[readonly] {
+    background-color: var(--text-field-disabled);
+    color: $secondary-text;
+  }
+}
+
+@mixin mask-both {
+  mask-size: calc(#{$space-l} + 1px), calc(100% - 2 * #{$space-l}), calc(#{$space-l} + 1px);
+  mask-position: left, center, right;
+  mask-repeat: repeat-y, repeat-y;
+  mask-image: linear-gradient(to right, transparent, black), linear-gradient(black, black), linear-gradient(to right, black, transparent);
+}
+
+@mixin mask-right {
+  mask-size: calc(100% - #{$space-l}), calc(#{$space-l} + 1px);
+  mask-position: left, right;
+  mask-repeat: repeat-y, repeat-y;
+  mask-image: linear-gradient(black, black), linear-gradient(to right, black, transparent);
+}
+
+@mixin entry-focus {
+  border: 1px solid fade-out($blue, 0.2);
+  box-shadow: 0 0 4px fade-out($blue-dark2, 0.6);
+  // Edge: High contrast mode
+  @media screen and (-ms-high-contrast: active) {
+    border: 1px solid highlight;
+  }
+}
+
+@mixin show-icon-on-hover($parentClass) {
+  opacity: 0;
+  .#{$parentClass}:hover &, .#{$parentClass}:focus &, &:focus {
+    opacity: 1;
+  }
+}
+
+@mixin shadow-focus-base($safeline, $outline, $customColor: $focus-color) {
+  @media screen and (-ms-high-contrast: active) {
+    outline: 3px solid highlight;
+  }
+  @if $outline == 'yes' {
+    outline: 3px solid $customColor;
+    outline-offset: -3px;
+    box-shadow: none;
+  } @else if $safeline == 'yes' {
+    outline: none;
+    box-shadow: 0 0 0 2px $gray-light3, 0 0 0 ($focus-spread + 2px) $customColor;
+  } @else {
+    outline: none;
+    box-shadow: 0 0 0 $focus-spread $customColor;
+  }
+}
+
+@mixin shadow-focus($safeline: 'yes', $ignore-outliner: 'no', $include-pseudoclass: 'yes', $outline: 'no', $customColor: $focus-color) {
+  @if $ignore-outliner == 'no' {
+    @if $include-pseudoclass == 'yes' {
+      body[data-outline] &:focus { @include shadow-focus-base($safeline, $outline, $customColor); }
+    } @else {
+      body[data-outline] & { @include shadow-focus-base($safeline, $outline, $customColor); }
+    }
+  } @else {
+    @if $include-pseudoclass == 'yes' {
+      &:focus { @include shadow-focus-base($safeline, $outline, $customColor); }
+    } @else {
+      @include shadow-focus-base($safeline, $outline, $customColor);
+    }
+  }
+}
