@@ -1,12 +1,12 @@
 {
-  // 실행 환경을 설정합니다. 여기서는 브라우저, ES2021, 노드 환경을 지정합니다.
+  // 실행 환경을 설정합니다. 여기서는 브라우저, 노드 환경을 지정합니다.
   "env": {
     "browser": true,
-    "esnext": true,
     "node": true
   },
   // 기존의 규칙 설정을 확장합니다. 여러 플러그인과 설정을 참조하고 있습니다.
   "extends": [
+    "next/core-web-vitals", // Next.js Core Web Vitals 규칙
     "eslint:recommended", // ESLint의 기본 규칙
     "plugin:@typescript-eslint/recommended", // TypeScript 규칙
     "plugin:react/recommended", // React 규칙

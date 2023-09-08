@@ -3,7 +3,7 @@
     "target": "ES6",
     "module": "esnext",
     "jsx": "preserve", // JSX를 유지, Next.js가 처리하도록
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [ "dom", "dom.iterable", "esnext" ],
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
@@ -16,10 +16,15 @@
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": true,
-    "outDir": "./.next",  // Next.js가 빌드한 결과를 저장하는 디렉토리
+    "outDir": "./.next", // Next.js가 빌드한 결과를 저장하는 디렉토리
     "baseUrl": ".",
     "paths": {
-      "@iyu/*": ["./iyu/src/*"],
+      "@iyu-web/*": [
+        "../package/dist/*"
+      ],
+      "@src/*": [
+        "../package/src/*"
+      ]
     },
     "skipLibCheck": true,
     "allowJs": true,
@@ -34,9 +39,9 @@
     ]
   },
   "include": [
-    "next-env.d.ts", 
-    "**/*.ts", 
-    "**/*.tsx", 
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
     ".next/types/**/*.ts"
   ],
   "exclude": [

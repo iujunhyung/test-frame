@@ -44,7 +44,7 @@ declare global {
     except(excepts: T[]): T[];
 
     groupBy<TKey>(keySelector: (item: T) => TKey): Array<{ key: TKey, value: T[] }>;
-  }  
+  }
   
   interface String {
     /**

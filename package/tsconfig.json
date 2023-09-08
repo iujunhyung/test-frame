@@ -6,6 +6,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "Node",
@@ -15,19 +16,23 @@
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": false,
-    "outDir": "./dist",
+    "outDir": "./dist/",
     "rootDir": "./src",
     "declaration": true,
-    "declarationDir": "./dist",
+    "declarationDir": "./dist/",
     "paths": {
       "@src/*": [ "./src/*" ],
-      "~@css/*": [ "./src/styles/*" ]
+      "@css/*": [ "./src/styles/*" ]
     },
     "typeRoots": ["./src/declarations", "./node_modules/@types"],
     "skipLibCheck": true
   },
   "include": [
-    "src/**/*",
-    "vite.config.js"
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "types"
   ]
 }

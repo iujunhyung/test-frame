@@ -4,8 +4,8 @@ import {
   InputDialogOptions, 
   MessageDialog, 
   BlankDialog 
-} from "@src/components/dialogs";
-import { IMenuItem, PopupMenu } from "@src/components/PopupMenu";
+} from "@src/components/lit/dialogs";
+import { IMenuItem, PopupMenu } from "@src/components/lit/PopupMenu";
 
 class UIManager {
   

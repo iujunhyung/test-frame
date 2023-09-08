@@ -4,7 +4,7 @@ import { customElement, query, property } from 'lit/decorators.js'
 import '@src/components/BusyIndicator';
 import '@src/components/dialogs';
 import { uiManager } from '@src/core/UIManager';
-import { MessageDialog } from '@src/components/dialogs/MessageDialog';
+import { MessageDialog } from '@src/components/lit/dialogs/MessageDialog';
 
 export type MessageContext = {
   title: string;

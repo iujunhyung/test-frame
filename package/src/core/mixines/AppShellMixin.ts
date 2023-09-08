@@ -15,11 +15,6 @@ export declare interface IAppShell {
   invokeInBusy<T>(action: () => Promise<T>): Promise<T>;
 }
 
-document.__Debug__ = import.meta.env.MODE === 'development';
-if (document.__Debug__) {
-  console.debug('Debug mode enabled.');
-}
-
 export const AppShellMixin = <T extends Constructor<LitElement>>(superClass: T) => {
   class AppShellClass extends ElementMixin(superClass) {
     

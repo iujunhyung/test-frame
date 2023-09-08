@@ -1,7 +1,7 @@
 import { LitElement, unsafeCSS, CSSResultGroup, TemplateResult, html } from "lit";
 import { MobxLitElement } from '@adobe/lit-mobx';
 
-import baseStyle from '~@css/tailwind.scss';
+import baseStyle from '@css/tailwind.scss';
 
 export declare class IPageBase {
   // highlight: boolean;

@@ -1,5 +1,5 @@
 import { action, makeAutoObservable, observable } from "mobx";
-import variables from '~@css/variables.scss';
+import variables from '@css/variables.scss';
 
 const tabletScreen = parseInt(/tabletScreen:\s*(.*);/.exec(variables)![1]!, 10);
 const smallScreen = parseInt(/smallScreen:\s*(.*);/.exec(variables)![1]!, 10);
