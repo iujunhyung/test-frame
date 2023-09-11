@@ -28,8 +28,7 @@
   "plugins": [
     "react",
     "@typescript-eslint",
-    "jsx-a11y",
-    "prettier"
+    "jsx-a11y"
   ],
   // 커스텀 ESLint 규칙을 설정합니다.
   "rules": {
@@ -44,8 +43,7 @@
         "specialLink": ["hrefLeft", "hrefRight"],
         "aspects": ["invalidHref", "preferButton"]
       }
-    ], // Next.js의 Link 컴포넌트에 대한 규칙 설정
-    "prettier/prettier": ["error", {}, { "usePrettierrc": true }] // Prettier 설정을 적용합니다.
+    ] // Next.js의 Link 컴포넌트에 대한 규칙 설정
   },
   // 플러그인에 대한 추가 설정입니다.
   "settings": {

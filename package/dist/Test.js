@@ -73,7 +73,7 @@ const TestComponent = createComponent({
     elementClass: TestElement,
     react: React,
     events: {
-        "onTestEvent": "test-event",
+        "onTestEvent": "testEvent",
     }
 });
 

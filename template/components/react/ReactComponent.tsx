@@ -3,15 +3,14 @@
 import { TestComponent } from '@iyu-web/dev/Test';
 // import { LitComponentReact } from "../lit/LitComponent";
 // import "../lit/LitComponent";
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function ReactComponent() {
-  
   const [name, setName] = useState("asss");
 
   return (
     <>
-      <button onClick={() => setName("hello")}>click</button>
+      <button onClick={() => setName("aaa")}>click</button>
       <TestComponent name={name} onTestEvent={(e) => console.log(e)}>
         <div>this is slot</div>
       </TestComponent>

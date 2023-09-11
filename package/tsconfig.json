@@ -1,31 +1,18 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES6",
-    "module": "ESNext",
     "jsx": "react",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "Node",
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": false,
     "outDir": "./dist/",    
     "declaration": true,
     "declarationDir": "./dist/",
+    "baseUrl": ".",
     "paths": {
-      "@src/*": [ "./src/*" ],
+      "@iyu-web/prod/*": [ "dist/*" ],
+      "@iyu-web/dev/*": [ "src/*" ],
       "@css/*": [ "./src/styles/*" ],
     },
     "typeRoots": ["./src/declarations", "./node_modules/@types"],
-    "skipLibCheck": true
   },
   "include": [
     "src/**/*"

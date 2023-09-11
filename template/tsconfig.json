@@ -1,46 +1,37 @@
 {
+  "extends": "../tsconfig.base.json",
   "compilerOptions": {
-    "target": "ES6",
-    "module": "esnext",
     "jsx": "preserve", // JSX를 유지, Next.js가 처리하도록
-    "lib": [ "dom", "dom.iterable", "esnext" ],
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "Bundler",
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": false,
+    "strict": true,
     "allowJs": true,
-    "noEmit": true,
+    "noEmit": false,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "incremental": true,
     "outDir": "./.next",
     "baseUrl": ".",
     "paths": {
-      "@iyu-web/prod/*": [ "../package/dist/*" ],
-      "@iyu-web/dev/*": [ "../package/src/*" ]
+      "@iyu-web/prod/*": [
+        "../package/dist/*"
+      ],
+      "@iyu-web/dev/*": [
+        "../package/src/*"
+      ]
     },
     "plugins": [
       {
         "name": "next"
       }
     ],
-    "skipLibCheck": true,
+    "strictNullChecks": true
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "../package/src/**/*.ts"
+    "../package/src/Test.ts"
   ],
   "exclude": [
     ".next",

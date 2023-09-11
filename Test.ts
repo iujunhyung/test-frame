@@ -35,7 +35,7 @@ export const TestComponent = createComponent({
   elementClass: TestElement,
   react: React,
   events: {
-    "onTestEvent": "testEvent",
+    "onTestEvent": "test-event",
   }
 });
 
