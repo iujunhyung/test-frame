@@ -7,6 +7,7 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitAny": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "Bundler",
@@ -15,34 +16,31 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
-    "useDefineForClassFields": true,
-    "outDir": "./.next", // Next.js가 빌드한 결과를 저장하는 디렉토리
-    "baseUrl": ".",
-    "paths": {
-      "@iyu-web/*": [
-        "../package/dist/*"
-      ],
-      "@src/*": [
-        "../package/src/*"
-      ]
-    },
-    "skipLibCheck": true,
+    "useDefineForClassFields": false,
     "allowJs": true,
     "noEmit": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "incremental": true,
+    "outDir": "./.next",
+    "baseUrl": ".",
+    "paths": {
+      "@iyu-web/prod/*": [ "../package/dist/*" ],
+      "@iyu-web/dev/*": [ "../package/src/*" ]
+    },
     "plugins": [
       {
         "name": "next"
       }
-    ]
+    ],
+    "skipLibCheck": true,
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "../package/src/**/*.ts"
   ],
   "exclude": [
     ".next",

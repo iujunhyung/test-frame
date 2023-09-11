@@ -1,9 +1,19 @@
 import { LitElement } from "lit";
-import React from "react";
 export declare class TestElement extends LitElement {
     name: string;
     render(): import("lit-html").TemplateResult<1>;
+    eventSource(): void;
 }
-export declare const Testing: React.ComponentType<Omit<React.HTMLAttributes<TestElement>, "children"> & {} & {
-    children?: (string | number | boolean | JSX.Element | React.ReactPortal | undefined) | (string | number | boolean | JSX.Element | React.ReactPortal | undefined)[];
-} & Partial<Omit<TestElement, keyof HTMLElement>> & React.RefAttributes<TestElement>>;
+export declare const TestComponent: import("@lit-labs/react").ReactWebComponent<TestElement, {
+    onTestEvent: string;
+}>;
+declare global {
+    namespace JSX {
+        interface IntrinsicElements {
+            'test-element': {
+                name?: string;
+                testEvent?: (event: CustomEvent) => void;
+            };
+        }
+    }
+}

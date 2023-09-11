@@ -29,3 +29,13 @@ export const LitComponentReact = createComponent({
     onOrder: "order"
   }
 });
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      'lit-component': {
+        word?: string;
+      };
+    }
+  }
+}

@@ -2,6 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "ESNext",
+    "jsx": "react",
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "strict": true,
     "noUnusedLocals": true,
@@ -16,13 +17,12 @@
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
     "useDefineForClassFields": false,
-    "outDir": "./dist/",
-    "rootDir": "./src",
+    "outDir": "./dist/",    
     "declaration": true,
     "declarationDir": "./dist/",
     "paths": {
       "@src/*": [ "./src/*" ],
-      "@css/*": [ "./src/styles/*" ]
+      "@css/*": [ "./src/styles/*" ],
     },
     "typeRoots": ["./src/declarations", "./node_modules/@types"],
     "skipLibCheck": true
@@ -32,7 +32,6 @@
   ],
   "exclude": [
     "node_modules",
-    "dist",
-    "types"
+    "dist"
   ]
 }

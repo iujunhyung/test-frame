@@ -1,25 +1,54 @@
-import typescript from "rollup-plugin-typescript2";
-import scss from "rollup-plugin-scss";
-import postcss from "rollup-plugin-postcss";
+import path from "path";
+import glob from "glob";
 import terser from "@rollup/plugin-terser";
+import alias from '@rollup/plugin-alias';
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
+import typescript from "rollup-plugin-typescript2";
+import scss from "rollup-plugin-scss";
+import postcss from "rollup-plugin-postcss";
+
+// const customResolver = resolve({
+//   extensions: ['.mjs', '.js', '.jsx', '.json', '.sass', '.scss']
+// });
+// const projectRootDir = path.resolve(__dirname);
+
+// const outputOptions = glob.sync("src/**/index.ts").map((entryFile) => {
+//   const path = entryFile.replace("src/", "").replace("/index.ts", "");
+//   return {
+//     input: {
+//       include: entryFile,
+//       exclude: ["src/**/*.d.ts"],
+//     },
+//     output_esm: {
+//       dir: `dist/esm/${path}`,
+//       format: "esm",
+//     },
+//     output_cjs: {
+//       dir: `dist/cjs/${path}`,
+//       format: "cjs",
+//     }
+//   };
+// });
 
 /** @type {import('rollup').RollupOptions} */
 export default {
-  input: `src/Test.ts`,
+  input: "src/Test.ts",
   output: [
     {
-      dir: `dist`,
-      format: "esm"
-    },
-    // {
-    //   file: `dist/Test.js`,
-    //   format: "cjs",
-    // },
+      file: "dist/Test.js",
+      format: "esm",
+    }
   ],
   plugins: [
+    // alias({
+    //   entries: [
+    //     { find: "@src", replacement: path.resolve(projectRootDir, "src") },
+    //     { find: "@css", replacement: path.resolve(projectRootDir, "src/styles") },
+    //   ],
+    //   customResolver
+    // }),
     resolve(),
     commonjs(),
     typescript(),
@@ -44,4 +73,12 @@ export default {
     //   }
     // }),
   ],
+  external: [
+    'react',
+    'react-dom',
+    'lit',
+    'lit/decorators.js',
+    '@lit-labs/react',
+    'mobx'
+  ]
 };
