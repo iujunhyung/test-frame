@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "esModuleInterop": true,
     "jsx": "react",
     "moduleResolution": "Node",
     "useDefineForClassFields": false,

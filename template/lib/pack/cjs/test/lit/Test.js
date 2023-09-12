@@ -1,15 +1,14 @@
 'use strict';
 
-var _tslib = require('../_virtual/_tslib.js');
+var _tslib = require('../../_virtual/_tslib.js');
 var lit = require('lit');
 var decorators_js = require('lit/decorators.js');
 var react = require('@lit-labs/react');
 var React = require('react');
+var test = require('./test.scss.js');
 
-// import styles from "./test.scss";
 exports.TestElement = class TestElement extends lit.LitElement {
     constructor() {
-        // static styles = styles;
         super(...arguments);
         this.name = "world";
     }
@@ -33,6 +32,7 @@ exports.TestElement = class TestElement extends lit.LitElement {
         }));
     }
 };
+exports.TestElement.styles = test;
 _tslib.__decorate([
     decorators_js.property({ type: String }),
     _tslib.__metadata("design:type", Object)

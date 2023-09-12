@@ -1,4 +1,5 @@
 import { TestComponent } from '@iyu-web/dev/test';
+import { TestReactComponent } from '@iyu-web/dev/test';
 import { useState } from "react";
 
 export default function ReactComponent() {
@@ -10,6 +11,7 @@ export default function ReactComponent() {
       <TestComponent name={name} onTestEvent={(e) => console.log(e)}>
         <div>this is slot</div>
       </TestComponent>
+      <TestReactComponent />
     </>
   );
 }

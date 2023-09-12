@@ -2,12 +2,12 @@ import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { createComponent } from "@lit-labs/react";
 import React from "react";
-// import styles from "./test.scss";
+import styles from "./test.scss";
 
 @customElement("test-element")
 export class TestElement extends LitElement {
 
-  // static styles = styles;
+  static styles = styles;
 
   @property({ type: String }) 
   name = "world";

@@ -1,0 +1,48 @@
+// 1
+$color-primary: #3498db;
+$color-secondary: #e74c3c;
+
+// 2
+body {
+  font-family: Arial, sans-serif;
+}
+
+// 3
+.header {
+  background-color: $color-primary;
+  color: white;
+  padding: 10px;
+}
+
+// 4
+.button {
+  background-color: $color-secondary;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+// 5
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+// 6
+.section {
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+// 7
+.footer {
+  background-color: $color-primary;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+div {
+  border: 1px solid black;
+}

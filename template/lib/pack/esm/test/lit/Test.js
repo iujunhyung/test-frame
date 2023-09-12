@@ -1,13 +1,12 @@
-import { __decorate, __metadata } from '../_virtual/_tslib.js';
+import { __decorate, __metadata } from '../../_virtual/_tslib.js';
 import { LitElement, html } from 'lit';
 import { property, customElement } from 'lit/decorators.js';
 import { createComponent } from '@lit-labs/react';
 import React from 'react';
+import styles from './test.scss.js';
 
-// import styles from "./test.scss";
 let TestElement = class TestElement extends LitElement {
     constructor() {
-        // static styles = styles;
         super(...arguments);
         this.name = "world";
     }
@@ -31,6 +30,7 @@ let TestElement = class TestElement extends LitElement {
         }));
     }
 };
+TestElement.styles = styles;
 __decorate([
     property({ type: String }),
     __metadata("design:type", Object)

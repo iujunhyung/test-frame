@@ -1,44 +1,44 @@
-// 1
-$color-primary: #3498db;
-$color-secondary: #e74c3c;
+'use strict';
 
-// 2
-body {
+var lit = require('lit');
+
+var styles = lit.css`body {
   font-family: Arial, sans-serif;
 }
 
-// 3
 .header {
-  background-color: $color-primary;
+  background-color: #3498db;
   color: white;
   padding: 10px;
 }
 
-// 4
 .button {
-  background-color: $color-secondary;
+  background-color: #e74c3c;
   color: white;
   padding: 5px 10px;
   border: none;
   cursor: pointer;
 }
 
-// 5
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-// 6
 .section {
   padding: 20px;
   margin-bottom: 20px;
 }
 
-// 7
 .footer {
-  background-color: $color-primary;
+  background-color: #3498db;
   color: white;
   padding: 10px;
   text-align: center;
 }
+
+div {
+  border: 1px solid black;
+}`;
+
+module.exports = styles;

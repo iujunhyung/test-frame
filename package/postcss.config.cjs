@@ -2,13 +2,13 @@
 const config = {
 
   // PostCSS 플러그인을 사용하여 변환을 수행합니다.
-  plugins: [
-    // tailwindcss를 사용합니다.
-    require('tailwindcss'),
+  // plugins: [
+  //   // tailwindcss를 사용합니다.
+  //   require('tailwindcss'),
 
-    // 자동으로 브라우저 접두사를 추가해 줍니다.
-    require('autoprefixer'),
-  ]
+  //   // 자동으로 브라우저 접두사를 추가해 줍니다.
+  //   require('autoprefixer'),
+  // ]
   
   //   // // CSS 코드를 최적화하고 압축합니다.
   //   // require('cssnano')({

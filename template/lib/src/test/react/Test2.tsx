@@ -1,8 +1,8 @@
 import React from 'react';
 
-// import './test.scss';
+import './test.scss';
 
-export default function TestReactComponent( props: {children: React.ReactNode} ) {
+export const TestReactComponent = (props: { children?: React.ReactNode }) => {
     return (
         <>
             <div>TestComponent</div>
