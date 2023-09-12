@@ -3,7 +3,8 @@
   "compilerOptions": {
     "jsx": "react",
     "moduleResolution": "Node",
-    "outDir": "./dist/",    
+    "useDefineForClassFields": true,
+    "outDir": "./dist/",
     "declaration": true,
     "declarationDir": "./dist/",
     "baseUrl": ".",
