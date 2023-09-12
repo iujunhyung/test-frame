@@ -1,61 +1,55 @@
-import path from "path";
-import glob from "glob";
+import { glob } from "glob";
+
 import terser from "@rollup/plugin-terser";
-import alias from '@rollup/plugin-alias';
+import { babel } from "@rollup/plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import json from "@rollup/plugin-json";
 import typescript from "rollup-plugin-typescript2";
 import scss from "rollup-plugin-scss";
 import postcss from "rollup-plugin-postcss";
+import { litScss } from 'rollup-plugin-scss-lit'
 
-// const customResolver = resolve({
-//   extensions: ['.mjs', '.js', '.jsx', '.json', '.sass', '.scss']
-// });
-// const projectRootDir = path.resolve(__dirname);
+const entryPoints = glob.sync([
+  "src/**/index.ts",
+  "src/**/index.tsx",
+]);
+console.log(entryPoints);
 
-// const outputOptions = glob.sync("src/**/index.ts").map((entryFile) => {
-//   const path = entryFile.replace("src/", "").replace("/index.ts", "");
-//   return {
-//     input: {
-//       include: entryFile,
-//       exclude: ["src/**/*.d.ts"],
-//     },
-//     output_esm: {
-//       dir: `dist/esm/${path}`,
-//       format: "esm",
-//     },
-//     output_cjs: {
-//       dir: `dist/cjs/${path}`,
-//       format: "cjs",
-//     }
-//   };
-// });
+const dependencies = Object.keys(require('./package.json').dependencies);
+console.log(dependencies);
 
 /** @type {import('rollup').RollupOptions} */
-export default {
-  input: "src/Test.ts",
+const rollup = {
+  input: entryPoints,
   output: [
     {
-      file: "dist/Test.js",
+      dir: "dist/esm",
       format: "esm",
-    }
+      preserveModules: true,
+      preserveModulesRoot: "src"
+    },
+    {
+      dir: "dist/cjs",
+      format: "cjs",
+      preserveModules: true,
+      preserveModulesRoot: "src"
+    },
   ],
   plugins: [
-    // alias({
-    //   entries: [
-    //     { find: "@src", replacement: path.resolve(projectRootDir, "src") },
-    //     { find: "@css", replacement: path.resolve(projectRootDir, "src/styles") },
-    //   ],
-    //   customResolver
-    // }),
     resolve(),
     commonjs(),
     typescript(),
     json(),
-    // scss({
-    //   output: "dist/styles.css"
+    // litScss({
+    //   minify: process.env.NODE_ENV === 'production',
+    //   options: { loadPaths: ['node_modules'] }
     // }),
+    // babel({
+    //   exclude: "node_modules/**",
+    //   presets: ["@babel/preset-react"],
+    // }),
+    // scss(),
     // postcss({
     //   loaders: ["sass"],
     //   use: [
@@ -73,12 +67,12 @@ export default {
     //   }
     // }),
   ],
+
   external: [
-    'react',
-    'react-dom',
-    'lit',
-    'lit/decorators.js',
-    '@lit-labs/react',
-    'mobx'
+    "lit/decorators.js",
+    "@microsoft/fast-element",
+    ...dependencies // 모든 의존성 패키지 명시
   ]
 };
+
+export default rollup;

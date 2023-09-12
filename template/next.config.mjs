@@ -17,9 +17,9 @@ const nextConfig = {
   // transpilePackages: [
   // ],
 
-  experimental: {
-    externalDir: true, // 외부 디렉토리 활성화
-  },
+  // experimental: {
+  //   externalDir: true, // 외부 디렉토리 활성화
+  // },
 };
 
 export default nextConfig;

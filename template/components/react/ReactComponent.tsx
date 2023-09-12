@@ -1,4 +1,4 @@
-import { TestComponent } from '@iyu-web/prod/Test';
+import { TestComponent } from '@iyu-web/dev/test';
 import { useState } from "react";
 
 export default function ReactComponent() {
