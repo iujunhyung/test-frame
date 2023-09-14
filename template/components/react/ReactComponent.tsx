@@ -11,6 +11,7 @@ export default function ReactComponent() {
       <TestComponent name={name} onTestEvent={(e) => console.log(e)}>
         <div>this is slot</div>
       </TestComponent>
+      Reac
       <TestReactComponent />
     </>
   );

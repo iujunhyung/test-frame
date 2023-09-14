@@ -1,15 +1,21 @@
-import { makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
-export class AppInfoStore {
+class AppInfoStore {
+  static instance: AppInfoStore;
 
-  @observable public logo: any;
-  @observable public title: any;
+  logo: string = "iyulab";;
+  title: string = "/logo.png";
   
+  static getInstance() {
+    if (!AppInfoStore.instance) {
+      AppInfoStore.instance = new AppInfoStore();
+    }
+    return AppInfoStore.instance;
+  }
+
   constructor() {
     makeAutoObservable(this);
-
-    this.title = "iyulab";
   }
 }
 
-export const appInfoStore = new AppInfoStore();
+export const appInfoStore =  AppInfoStore.getInstance();
