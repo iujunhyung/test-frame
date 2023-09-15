@@ -1,21 +1,13 @@
 import { makeAutoObservable } from "mobx";
 
-class AppInfoStore {
-  static instance: AppInfoStore;
+export class AppInfoStore {
 
-  logo: string = "iyulab";;
+  logo: string = "iyulab";
   title: string = "/logo.png";
-  
-  static getInstance() {
-    if (!AppInfoStore.instance) {
-      AppInfoStore.instance = new AppInfoStore();
-    }
-    return AppInfoStore.instance;
-  }
 
-  constructor() {
+  constructor(logo?: string, title?: string) {
     makeAutoObservable(this);
+    this.logo = logo ?? this.logo;
+    this.title = title ?? this.title;
   }
 }
-
-export const appInfoStore =  AppInfoStore.getInstance();

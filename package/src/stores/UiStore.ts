@@ -1,4 +1,4 @@
-import { makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 
 import { DOM } from "@microsoft/fast-element";
 import { baseLayerLuminance, StandardLuminance } from "@microsoft/fast-components";
@@ -10,7 +10,7 @@ export enum Themes {
 
 export class UiStore {
 
-  @observable public theme: Themes
+  public theme: Themes
   
   constructor() {
     makeAutoObservable(this);
@@ -24,7 +24,7 @@ export class UiStore {
   }
 
   toggleTheme(targetElement?: any) {
-    let theme: 'dark' | 'light' = this.theme == Themes.dark ? 'light' : 'dark';
+    const theme: 'dark' | 'light' = this.theme == Themes.dark ? 'light' : 'dark';
     this.updateTheme(theme, targetElement);
   }
   
@@ -57,7 +57,7 @@ export class UiStore {
       });
     }
 
-    let appShell = document.querySelector("app-shell");
+    const appShell = document.querySelector("app-shell");
     if (appShell) {
       if (theme == 'dark') {
         appShell.classList.add('dark')
@@ -67,5 +67,3 @@ export class UiStore {
     }
   }
 }
-
-export const uiStore = new UiStore();

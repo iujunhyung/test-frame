@@ -1,11 +1,11 @@
-import { action, makeAutoObservable, observable } from "mobx";
-import { inject } from '@iyu-web/core/DI';
-import { AppSettings } from "@iyu-web/core/AppSettings";
+import { action, makeAutoObservable } from "mobx";
+// import { inject } from '@iyu-web/core/DI';
+// import { AppSettings } from "@iyu-web/core/AppSettings";
 
 export class UserStore {
   
-  @inject(AppSettings) appSettings?: AppSettings;
-  @observable public user?: any = null;
+  // @inject(AppSettings) appSettings?: AppSettings;
+  user?: any = null;
 
   get userId() {
     return this.user?.claims?.find((n: { type: string; }) => n.type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier")?.value;
@@ -24,7 +24,7 @@ export class UserStore {
   }
 
   get SID() {
-    let endWith = "/identity/claims/sid";
+    const endWith = "/identity/claims/sid";
     return this.user?.claims?.find((n: { type: string; }) => n.type.endsWith(endWith))?.value;
   }
 
@@ -42,42 +42,42 @@ export class UserStore {
   }
   
   init() {
-    let url = `/identity` + location.search;
-    let option: any = null;
-    if (this.appSettings) {
-      let accessToken = this.appSettings.getAccessToken();
-      let baseUrl = this.appSettings.getServiceURL();
-      if (accessToken) {
-        if (baseUrl) {
-          url = baseUrl + url;
-        }
-        option = {
-          headers: {
-            Authorization: `Bearer ${accessToken}`
-          }
-        };
-      }
-    }
+    // let url = `/identity` + location.search;
+    // let option: any = null;
+    // if (this.appSettings) {
+    //   const accessToken = this.appSettings.getAccessToken();
+    //   const baseUrl = this.appSettings.getServiceURL();
+    //   if (accessToken) {
+    //     if (baseUrl) {
+    //       url = baseUrl + url;
+    //     }
+    //     option = {
+    //       headers: {
+    //         Authorization: `Bearer ${accessToken}`
+    //       }
+    //     };
+    //   }
+    // }
     
-    fetch(url, option)
-      .then(response => {
-        if (response.headers.get('content-type')?.startsWith('application/json')) {
-          return response.json();
-        } else {
-          return null;
-        }
-      })      
-      .then(user => {
-        if (user == null) {
-          console.debug('user is null');
-        } else {
-          this.login(user);
-        }
-      })
-      .catch(error => {
-        // 오류를 무시하고 아무것도 처리하지 않습니다.
-        console.error(error);
-      });
+    // fetch(url, option)
+    //   .then(response => {
+    //     if (response.headers.get('content-type')?.startsWith('application/json')) {
+    //       return response.json();
+    //     } else {
+    //       return null;
+    //     }
+    //   })      
+    //   .then(user => {
+    //     if (user == null) {
+    //       console.debug('user is null');
+    //     } else {
+    //       this.login(user);
+    //     }
+    //   })
+    //   .catch(error => {
+    //     // 오류를 무시하고 아무것도 처리하지 않습니다.
+    //     console.error(error);
+    //   });
   }
 }
 

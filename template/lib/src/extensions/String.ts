@@ -1,6 +1,6 @@
 
 String.prototype.left = function(search: string, last: boolean = false): string {  
-  let s = String(this).toString();
+  const s = String(this).toString();
   
   return last
     ? s.substring(0, s.lastIndexOf(search))
@@ -8,7 +8,7 @@ String.prototype.left = function(search: string, last: boolean = false): string 
 }
 
 String.prototype.right = function(search: string, last: boolean = true): string {  
-  let s = String(this).toString();
+  const s = String(this).toString();
   return last
     ? s.substring(s.lastIndexOf(search) + search.length)
     : s.substring(s.indexOf(search) + search.length);

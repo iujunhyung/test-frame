@@ -1,7 +1,10 @@
+import { DI } from './DI';
 import {
-  appInfoStore,
-  menuStore,
-  locator,
+  AppInfoStore,
+  MenuStore,
+  LocatorStore,
+  IMenuItem,
+  RouteExt
 } from '@iyu-web/stores';
 
 export abstract class StartupBase {
@@ -9,19 +12,24 @@ export abstract class StartupBase {
   abstract logo?: string;
   abstract basePath?: string;
 
+  abstract initMainMenuItems(): IMenuItem[];
+  abstract initRoutes(): RouteExt[];
+
   init() {
+    console.log("StartupBase.init()");
+    const appInfo = DI.register<AppInfoStore>(AppInfoStore)[1];
+    const menu = DI.register(MenuStore)[1];
+    const locator = DI.register(LocatorStore)[1];
+
     // app-info
-    appInfoStore.title = this.title ?? appInfoStore.title;
-    appInfoStore.logo = this.logo ?? appInfoStore.logo;
+    appInfo.title = this.title ?? appInfo.title;
+    appInfo.logo = this.logo ?? appInfo.logo;
 
     // menu
-    menuStore.setMainMenuItems(this.initMainMenuItems());
+    menu.setMainMenuItems(this.initMainMenuItems());
     
     // locator
-    locator.basePath = this.basePath;
-    locator.setRoutes(this.initRoutes());
+    const base = this.basePath ?? "/";
+    locator.initRouter(base, this.initRoutes());
   }
-
-  abstract initMainMenuItems(): any[];
-  abstract initRoutes(): any[];
 }

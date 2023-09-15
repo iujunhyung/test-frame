@@ -1,18 +1,18 @@
-import { makeAutoObservable, observable } from "mobx";
+import { makeAutoObservable } from "mobx";
 import axios from 'axios';
 
 export class IdentityStore {
 
-  @observable public email: string | null = null;
-  @observable public name: string | null = null;
-  @observable public phone: string | null = null;
+  email: string | null = null;
+  name: string | null = null;
+  phone: string | null = null;
   
   constructor() {
     makeAutoObservable(this);
   }
 
   async getClaimAsync(type: string) {
-    let r = await axios.get(`/identity/claims?type=${type}`);
+    const r = await axios.get(`/identity/claims?type=${type}`);
     if (r.status == 200) {
       return r.data;
     } else {
